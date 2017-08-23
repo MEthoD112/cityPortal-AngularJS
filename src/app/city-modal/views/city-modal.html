@@ -1,0 +1,33 @@
+<div class="modal-body" id="modal-city">
+    <label for="addnewcity">
+       City name: 
+       <input ng-model="cityModal.ModalService.CityName" ng-model-options="{ getterSetter: true }" type="text" id="addnewcity" class="addnewcity">
+    </label>
+    <label for="addnewcountry">
+       Country name: 
+       <input ng-model="cityModal.ModalService.CountryName" ng-model-options="{ getterSetter: true }" type="text" id="addnewcountry">
+    </label>
+    <div>
+        <div>
+            <label for="i">
+                Is Industrial
+                <input ng-click="cityModal.toggleColor('IsIndustrial')" ng-attr-data-act="{{cityModal.ModalService.IsIndustrial()}}" type="button" id="i" value="I" class="i"
+                ng-style="cityModal.ModalService.IsIndustrial() === 'true' ? { 'background':'#4ee321'} : { 'background': '#f39846'}">
+            </label>
+        </div>
+        <div>
+            <label for="c">
+                Is Criminal
+                <input ng-click="cityModal.toggleColor('IsCriminal')" ng-attr-data-act="{{cityModal.ModalService.IsCriminal()}}" type="button" id="c" value="C" class="c"
+                ng-style="cityModal.ModalService.IsCriminal() === 'true' ? { 'background':'#4ee321'} : { 'background': '#f39846'}">
+            </label>
+        </div>
+        <div>
+            <label for="p">
+                Is Polluted
+                <input ng-click="cityModal.toggleColor('IsPolluted')" ng-attr-data-act="{{cityModal.ModalService.IsPolluted()}}" type="button" id="p" value="P" class="p"
+                ng-style="cityModal.ModalService.IsPolluted() === 'true' ? { 'background':'#4ee321'} : { 'background': '#f39846'}">
+            </label>
+        </div>
+    </div>
+</div>

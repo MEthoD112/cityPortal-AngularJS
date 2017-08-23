@@ -1,0 +1,35 @@
+<div ng-style="cityList.value.length ? { 'display':'block'} : { 'display': 'none'}" class="city-error" ng-hide="(cityList.value | filter: {name:cityList.NaviService.CityName()}).length">No such city in database, use dropdown menu!!!</div>
+<div ng-repeat="city in cityList.value | filter: {name: cityList.NaviService.CityName()} | filter : {country: cityList.NaviService.CountryName()} 
+| filter : {isIndustrial: cityList.NaviService.IsIndustrial(), isCriminal: cityList.NaviService.IsCriminal(), isPolluted: cityList.NaviService.IsPolluted()}
+| filter: cityList.NaviService.filterByLength(cityList.NaviService.MinCitizen(), cityList.NaviService.MaxCitizen())">
+    <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+        <div class="panel panel-default">
+            <div ng-href="#{{ city.id }}" class="toggle-container" role="button" data-toggle="collapse" data-parent="#accordion" aria-expanded="false">
+            </div>
+            <div class="panel-heading" role="tab" id="headingOne">
+                <button ng-click="cityList.deleteCity(city, cityList.value)" class="delete-city"></button>
+                <button ng-click="cityList.setAttrsForEdit(city)" class="edit-city" data-toggle="modal" data-target="#myModal"></button>
+                <a>{{city.name}}</a>
+                <div class="areas"><span>{{ city.areasNames() }}</span></div>
+                <div class="marks">
+                    <button ng-click="cityList.saveToggling(city.toogleIndustrial())" ng-attr-data-act="{{ city.isIndustrial }}" ng-style="city.isIndustrial == 'true' ? { 'background':'#4ee321' } : { 'background':'#f39846' }"
+                        id="i-button" class="attributes">I</button>
+                    <button ng-click="cityList.saveToggling(city.toogleCriminal())" ng-attr-data-act="{{ city.isCriminal }}" ng-style="city.isCriminal === 'true' ? { 'background':'#4ee321' } : { 'background':'#f39846' }"
+                        id="c-button" class="attributes">C</button>
+                    <button ng-click="cityList.saveToggling(city.tooglePolluted())" ng-attr-data-act="{{ city.isPolluted }}" ng-style="city.isPolluted === 'true' ? { 'background':'#4ee321' } : { 'background':'#f39846' }"
+                        id="p-button" class="attributes">P</button>
+                </div>
+            </div>
+            <div ng-attr-id="{{ city.id }}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+                <div class="panel-body">
+                    <div class="newarea">
+                        <button ng-click="cityList.setDefaultForArea(city.id)" type="button" class="newareabutton btn btn-primary btn-sm" id="add-new-area" data-toggle="modal" data-target="#myModal">
+                                        Add New Area
+                                    </button>
+                    </div>
+                    <area-list value="city"><area-list>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

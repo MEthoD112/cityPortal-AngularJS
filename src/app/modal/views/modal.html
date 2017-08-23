@@ -1,0 +1,19 @@
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel">{{modal.ModalService.Title()}}</h4>
+                <span id="city-error" class="city-error">{{modal.ModalService.CityError()}}</span>
+            </div>
+            <city-modal ng-show="modal.ModalService.Mode()"></city-modal>
+            <area-modal ng-hide="modal.ModalService.Mode()"></area-modal>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button ng-click="modal.addCity(modal.value); modal.editCity(modal.value); modal.addArea(modal.value); modal.editArea(modal.value)" ng-attr-data-mode="{{ modal.ModalService.Attr() }}" type="button" class="btn btn-primary" id="save-new-city">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>

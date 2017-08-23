@@ -1,0 +1,80 @@
+<div class="button-wrapper">
+    <div class="input-group" id="adv-search">
+        <input ng-click="navi.NaviService.Reset()" ng-model="navi.NaviService.CityName" ng-model-options="{getterSetter: true}" type="text" class="form-control" placeholder="Search for cities" list="cities-list" id="input-search-cities"
+        />
+        <datalist id="cities-list">
+            <option ng-repeat="city in navi.value" value="{{city.name}}">
+        </datalist>
+        <div class="input-group-btn">
+            <div class="btn-group" role="group">
+                <div class="dropdown dropdown-lg" id="dropdown-menu">
+                    <button ng-click="navi.openFilterWindow(navi.value); navi.NaviService.Reset()()" type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false" id="dropdown-button">
+                        <span class="caret"></span>
+                    </button>
+                    <div class="dropdown-menu dropdown-menu-right" role="menu">
+                        <form class="form-horizontal" role="form">
+                            <div class="form-group">
+                                <label for="input-search-countries">Filter by countries</label>
+                                <span ng-style="navi.value.length ? { 'display':'inline'} : { 'display': 'none'}" ng-hide="(navi.value | filter: {country:navi.NaviService.CountryName()}).length" id="countries-error" class="countries-error">No such country in database, use dropdown menu!!!</span>
+                                <input ng-model="navi.NaviService.CountryName" ng-model-options="{getterSetter: true}" ng-click="navi.NaviService.Reset()" type="text" class="form-control input-countries" placeholder="Search for countries" list="countries-list"
+                                    id="input-search-countries" />
+                                <datalist id="countries-list">
+                                    <option ng-repeat="country in navi.getCountriesNames(navi.value)" value="{{country}}">
+                                </datalist>
+                            </div>
+                            <hr>
+                            <div class="form-group" id="filter-attributes">
+                                <label>Filter by attributes</label>
+                                <span ng-style="navi.value.length ? { 'display':'inline'} : { 'display': 'none'}" ng-hide="(navi.value | filter: {isIndustrial: navi.NaviService.IsIndustrial(), isCriminal: navi.NaviService.IsCriminal(), isPolluted: navi.NaviService.IsPolluted()}).length" id="atrributes-error" class="atrributes-error">No cities with such attributes!!!</span>
+                                <div class="wrapper-filter-attr">
+                                    <label for="i-filter" class="attrib">
+                                        Is Industrial
+                                        <input ng-click="navi.toggleColor('isIndustrial')" ng-attr-data-act="{{navi.isIndustrial}}" type="button" id="i-filter" value="I" class="i"
+                                               ng-style="navi.isIndustrial === 'true' ? { 'background':'#4ee321'} : { 'background': '#f39846'}">
+                                    </label>
+                                </div>
+                                <div class="wrapper-filter-attr">
+                                    <label for="c-filter" class="attrib">
+                                        Is Criminal
+                                        <input ng-attr-data-act="{{navi.isCriminal}}" ng-click="navi.toggleColor('isCriminal')" type="button" id="c-filter" value="C" class="c"
+                                               ng-style="navi.isCriminal === 'true' ? { 'background':'#4ee321'} : { 'background': '#f39846'}">
+                                    </label>
+                                </div>
+                                <div class="wrapper-filter-attr">
+                                    <label for="p-filter" class="attrib">
+                                        Is Polluted
+                                        <input ng-attr-data-act="{{navi.isPolluted}}" ng-click="navi.toggleColor('isPolluted')" type="button" id="p-filter" value="P" class="p"
+                                               ng-style="navi.isPolluted === 'true' ? { 'background':'#4ee321'} : { 'background': '#f39846'}">
+                                    </label>
+                                </div>
+                                <button ng-click="navi.NaviService.Reset(); navi.NaviService.IsIndustrial(navi.isIndustrial); navi.NaviService.IsCriminal(navi.isCriminal); navi.NaviService.IsPolluted(navi.isPolluted)" id="search-attributes-button" type="button" class="btn btn-primary search-attributes">
+                                    <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                                </button>
+                            </div>
+                            <hr>
+                            <div class="form-group">
+                                <label class="filter-area-title">Filter areas by citizens</label>
+                                <span id="citizens-error" class="citizens-error"></span>
+                                <div></div>
+                                <label class="citizen-input" for="min-value-citizens">
+                                    Minimal value:
+                                    <input ng-click="navi.NaviService.ResetExceptCitizen()" ng-model="navi.NaviService.MinCitizen" ng-model-options="{getterSetter: true}" id="min-value-citizens" class="form-control min-value" type="text" />
+                                </label>
+                                <label class="citizen-input" for="max-value-citizens">
+                                    Maximum value: 
+                                    <input ng-click="navi.NaviService.ResetExceptCitizen()" ng-model="navi.NaviService.MaxCitizen" ng-model-options="{getterSetter: true}" id="max-value-citizens" class="form-control max-value" type="text" />
+                                </label>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <button ng-click="navi.NaviService.Reset()" type="button" class="btn btn-primary" id="reset-button-cities">
+                    <span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+                </button>
+                <button ng-click="navi.setDefault()" type="button" class="addcity btn btn-primary .btn-sm" data-toggle="modal" data-target="#myModal" id="add-new-city-button">
+                    Add New City
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

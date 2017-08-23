@@ -1,0 +1,9 @@
+<div ng-repeat="area in areaList.value.cityAreas | filter: areaList.NaviService.filterByRange('citizenAmount', areaList.NaviService.MinCitizen(), areaList.NaviService.MaxCitizen())">
+    <div class="areasdown">
+        <button ng-click="areaList.deleteArea(area, areaList.value)" class="delete-area"></button>
+        <button ng-click="areaList.setAttrsForAreaEdit(area)" class="edit-area" data-toggle="modal" data-target="#myModal"></button>
+        <span class="areadown-name">{{ area.area }}</span>
+        <span class="description">{{ area.description }}</span>
+        <span class="citizenamount">{{ area.citizenAmount + ' people'}}</span>
+    </div>
+</div>
