@@ -1,1 +1,20 @@
-<!DOCTYPE html> <html ng-app=cityPortal lang=en> <head> <meta charset=UTF-8> <title>City Portal</title> <link rel=icon type=image/x-icon href=/img/favicon.jpg> <meta name=viewport content="width=device-width,initial-scale=1"> <base href=/ > <link href="/app.ee6e886961f4879de2e2.css" rel="stylesheet"></head> <body ng-controller="AppController as ctrl"> <div id=wrapper class=wrapper> <navi value=ctrl.cities></navi> <city-list value=ctrl.cities></city-list> </div> <modal value=ctrl.cities></modal> <script type="text/javascript" src="/app.ee6e886961f4879de2e2.js"></script></body> </html>
+<!Doctype html>
+<html ng-app="cityPortal" lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>City Portal</title>
+    <link rel="icon" type="image/x-icon" href="/img/favicon.jpg">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <base href="/">
+</head>
+
+<body ng-controller="AppController as ctrl">
+    <div id="wrapper" class="wrapper">
+        <navi value="ctrl.cities"></navi>
+        <city-list value="ctrl.cities"></city-list>
+    </div>
+    <modal value="ctrl.cities"></modal>
+<script type="text/javascript" src="http://localhost:8080/app.bundle.js"></script></body>
+
+</html>

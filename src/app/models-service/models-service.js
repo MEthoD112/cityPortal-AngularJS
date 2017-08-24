@@ -1,8 +1,8 @@
 import cityModule from '../app.module';
 import CityModel from './citymodel';
 
-export const ModelsService = cityModule.factory('ModelsService', function() {
-    const createCityModel = function(model) {
+export default cityModule.factory('ModelsService', function() {
+    function createCityModel(model) {
         return new CityModel(model);
     };
     return {

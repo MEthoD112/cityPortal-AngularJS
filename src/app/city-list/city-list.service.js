@@ -6,26 +6,26 @@ export default cityModule
             cities: []
         });
 
-        const getAll = function() {
+        function getAll() {
             return $localStorage.cities;
         };
 
-        const add = function(city) {
+        function add(city) {
             $localStorage.cities.push(city);
         };
 
-        const remove = function(city) {
+        function remove(city) {
             $localStorage.cities.splice($localStorage.cities.indexOf(city), 1);
         };
 
-        const getById = function(id) {
+        function getById(id) {
             const cities = $localStorage.cities.filter((city) => {
                return city.id == id;
             });
             return cities[0];
         };
 
-        const update = function(city, newCity) {
+        function update(city, newCity) {
             $localStorage.cities.splice($localStorage.cities.indexOf(city), 1, newCity);
         };
 
